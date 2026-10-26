@@ -1,71 +1,1141 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="page">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AI Creative Agent</title>
+  <meta name="theme-color" content="#F7F7FB">
+  <meta name="description" content="아이디어 한 줄로 발표자료부터 예산 분석까지. AI Creative Agent Team.">
+  <title>AI Creative Agent Team — One idea, five deliverables.</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap">
+  <style>
+    /* 기본 재질과 타이포 */
+    .page { background:#F7F7FB; color:#14142B; font-family:'Pretendard Variable',-apple-system,sans-serif; }
+    .site { margin:0; word-break:keep-all; -webkit-font-smoothing:antialiased; }
+    .site::after { content:''; position:fixed; inset:0; z-index:20; pointer-events:none; opacity:.04; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23000' filter='url(%23n)' d='M0 0h180v180H0z'/%3E%3C/svg%3E"); }
+    .glass { background:rgba(255,255,255,.55); -webkit-backdrop-filter:blur(24px) saturate(160%); backdrop-filter:blur(24px) saturate(160%); border:1px solid rgba(255,255,255,.7); box-shadow:0 30px 80px -30px rgba(76,70,160,.25),inset 0 1px 1px #fff; }
+    .pill { display:inline-flex; align-items:center; justify-content:center; gap:8px; border-radius:999px; padding:12px 21px; font:600 13px/1.2 'Pretendard Variable',sans-serif; text-decoration:none; white-space:nowrap; cursor:pointer; transition:transform .3s cubic-bezier(.2,1.3,.3,1); color:inherit; }
+    .pill:hover { transform:translateY(-2px); }
+    .pill:focus-visible,.nav-link:focus-visible,.brand:focus-visible { outline:2px solid #7560D0; outline-offset:4px; }
+    .primary { color:#fff; background:#14142B; border:1px solid #14142B; box-shadow:0 6px 16px -8px #14142B; }
+    .serif { font-family:'Instrument Serif',Georgia,serif; font-style:italic; font-weight:400; letter-spacing:-.025em; }
+    .eyebrow { font-size:26px; margin:0 0 14px; color:#8C7AAD; }
+    .section-title { margin:0; font-size:clamp(32px,4.2vw,56px); font-weight:800; letter-spacing:-.04em; line-height:1.1; text-wrap:balance; }
+    .section { width:min(1080px,calc(100% - 48px)); margin:112px auto; scroll-margin-top:96px; }
+    .section-head { margin-bottom:42px; }
+    .brand-text { background:linear-gradient(120deg,#4F6BFF,#8B5CF6 40%,#EC4899 70%,#FF7A45); background-clip:text; -webkit-background-clip:text; color:transparent; }
+    .brand-dot { width:25px; height:25px; flex:none; border-radius:50%; background:linear-gradient(120deg,#6E8BFF,#A77BFF 40%,#FF8AC8 70%,#FFB37A); box-shadow:inset 0 1px 3px #ffffffaa,0 3px 8px #a77bff33; }
+    .nav { position:fixed; z-index:30; top:16px; left:50%; translate:-50% 0; width:min(1080px,calc(100% - 24px)); box-sizing:border-box; min-height:62px; padding:9px 10px 9px 20px; border-radius:999px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .brand { display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit; font-size:13px; font-weight:750; white-space:nowrap; min-width:0; }
+    .nav-links { display:flex; gap:28px; }
+    .nav-link { color:#6B6B80; text-decoration:none; font-size:13px; }
+    .nav-link:hover { color:#14142B; }
+
+    /* 히어로·CTA 메시 그라데이션 */
+    .mesh { background: radial-gradient(circle at 16% 18%, #8EA2FF 0 14%, transparent 32%), radial-gradient(circle at 78% 9%, #FFB3D9 0 13%, transparent 30%), radial-gradient(circle at 66% 62%, #FFD3A8 0 16%, transparent 34%), radial-gradient(circle at 25% 74%, #9BE3FF 0 15%, transparent 32%), radial-gradient(circle at 50% 32%, #C4A5FF 0 16%, transparent 36%), linear-gradient(135deg, #fff, #F5F0FF 40%, #FFF7F0); }
+    .hero { margin:12px; border-radius:36px; padding:96px 24px 30px; position:relative; overflow:hidden; isolation:isolate; text-align:center; }
+    .hero-content { position:relative; z-index:1; }
+    .blob { position:absolute; width:65%; aspect-ratio:1; border-radius:50%; pointer-events:none; z-index:-1; background:radial-gradient(circle,#FFB3D9aa,transparent 68%); animation:drift 28s ease-in-out infinite alternate; translate:0 var(--parallax,0px); }
+    .blob-one { top:-25%; right:-10%; }
+    .blob-two { left:-20%; bottom:-30%; background:radial-gradient(circle,#9BE3FFcc,transparent 68%); animation-duration:34s; animation-direction:alternate-reverse; }
+    @keyframes drift { to { transform:translate(8%,12%) scale(1.18); } }
+    .hero-badge { padding:7px 13px; font-size:10px; font-weight:600; display:inline-flex; align-items:center; gap:7px; border-radius:999px; color:#494065; }
+    .badge-dot { color:#8167DD; font-size:8px; }
+    .hero-kicker { margin:12px 0 8px; font-size:25px; color:#574D7A; }
+    .hero-title { margin:0; font-size:clamp(40px,6vw,88px); font-weight:800; letter-spacing:-.04em; line-height:1.1; text-wrap:balance; }
+    .hero-subtitle { max-width:650px; margin:17px auto 24px; font-size:15px; line-height:1.65; color:#59576E; }
+
+    /* 실제 대화창 */
+    .chat-card { width:min(860px,100%); margin:0 auto; border-radius:25px; text-align:left; position:relative; box-sizing:border-box; overflow:hidden; }
+    .window-bar { display:flex; align-items:center; gap:13px; padding:13px 18px; border-bottom:1px solid rgba(20,20,43,.06); min-width:0; }
+    .window-dots { display:flex; gap:5px; flex:none; }
+    .window-dot { width:6px; height:6px; border-radius:50%; background:#9A96AD66; }
+    .window-title { font-size:12px; font-weight:650; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0; }
+    .connection-dot { width:6px; height:6px; border-radius:50%; background:#AAA5B6; flex:none; }
+    .is-connected .connection-dot { background:#40AF88; box-shadow:0 0 0 3px #40af8814; }
+    .reset { margin-left:auto; padding:7px 11px; font-size:10px; box-shadow:none; flex:none; }
+    .chat-foot { padding:0 16px 10px; }
+    .example-chips { display:flex; gap:6px; overflow-x:auto; scrollbar-width:none; padding:5px 0 11px; }
+    .example-chips::-webkit-scrollbar { display:none; }
+    .example-chip { padding:8px 11px; font-size:10px; flex:none; box-shadow:none; }
+    .example-chip:disabled { cursor:default; opacity:.55; }
+    .is-started .example-chips { display:none; }
+    .composer { display:flex; align-items:flex-end; position:relative; gap:10px; border-radius:29px; padding:9px 10px 9px 20px; min-height:58px; box-sizing:border-box; box-shadow:inset 0 1px 1px #fff,0 8px 24px -20px #5B4BC4; transition:transform .35s cubic-bezier(.2,1.3,.3,1),box-shadow .35s; }
+    .composer:focus-within { transform:translateY(-2px); box-shadow:0 12px 30px -18px #5b4bc466,inset 0 1px 1px #fff; }
+    .prompt-input { width:100%; flex:1; min-width:0; resize:none; border:0; outline:none; background:transparent; padding:10px 0; color:#14142B; font:400 13px/20px 'Pretendard Variable',sans-serif; max-height:120px; box-sizing:content-box; }
+    .prompt-input::placeholder { color:#8A879E; }
+    .send { height:38px; width:38px; flex:none; padding:0; border-radius:50%; font:500 22px/1 sans-serif; }
+    .send:disabled { opacity:.3; cursor:default; transform:none; }
+    .disclaimer { margin:8px 0 0; text-align:center; font-size:9px; color:#8C879F; }
+    .work-status { display:none; align-items:center; gap:10px; font-size:11px; color:#6B608C; padding:8px 3px 12px; }
+    .is-working .work-status { display:flex; }
+    .work-dots { display:flex; gap:3px; flex:none; }
+    .work-dot { width:4px; height:4px; border-radius:50%; background:#9D81E8; animation:pulse 1.7s ease-in-out infinite; animation-delay:calc(var(--i) * .16s); }
+    @keyframes pulse { 0%,70%,100% { opacity:.25; transform:translateY(0); } 35% { opacity:1; transform:translateY(-3px); } }
+    .suggestions { display:flex; gap:7px; flex-wrap:wrap; max-height:110px; overflow:auto; }
+    .suggestion { font-size:11px; padding:9px 13px; margin-bottom:10px; box-shadow:none; max-width:100%; overflow:hidden; text-overflow:ellipsis; }
+    .error-panel { display:none; padding:14px; border-radius:18px; background:#ffffff55; }
+    .error-title { font-size:13px; margin:0 0 8px; }
+    .error-detail { display:block; font:10px/1.6 ui-monospace,monospace; overflow-wrap:anywhere; color:#777189; margin-bottom:12px; }
+    .retry { padding:9px 14px; font-size:11px; }
+    .is-error .error-panel { display:block; }
+    .is-error .composer { display:none; }
+    .connection-status { color:#81788F; font-size:11px; padding:12px 0 6px; text-align:center; }
+    .is-connected .connection-status,.is-error .connection-status { display:none; }
+    .logo-strip { display:flex; flex-wrap:wrap; justify-content:center; gap:18px 34px; padding:25px 24px 0; color:#9A98AE; font-size:11px; font-weight:600; }
+    .stats { display:grid; grid-template-columns:repeat(4,1fr); padding:30px 0; margin-top:35px; margin-bottom:90px; border-bottom:1px solid rgba(20,20,43,.08); }
+    .stat { text-align:center; }
+    .stat-number { display:block; font-size:44px; font-weight:650; letter-spacing:-.06em; }
+    .stat-label { display:block; margin-top:7px; color:#6B6B80; font-size:12px; }
+
+    /* 다섯 결과물의 CSS 목업 */
+    .bento { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:16px; }
+    .feature { grid-column:span 2; padding:25px; border-radius:26px; min-width:0; overflow:hidden; background:linear-gradient(145deg,#ffffffa8,#efeff6b3); box-shadow:inset 0 1px 1px #fff; }
+    .feature-wide { grid-column:span 3; }
+    .feature-title { margin:22px 0 9px; font-size:21px; font-weight:750; letter-spacing:-.04em; }
+    .feature-description { margin:0; color:#6B6B80; font-size:13px; line-height:1.65; min-height:44px; }
+    .filename { display:inline-block; font:10px/1.5 ui-monospace,monospace; color:#9691AA; margin-top:20px; }
+    .mock { height:185px; display:grid; place-items:center; position:relative; border-radius:16px; overflow:hidden; background:#E7E5F1; }
+    .mock-slides { background:radial-gradient(ellipse at 50% 100%,#D7D2F4,transparent),#F1EFF8; }
+    .slide { width:58%; height:116px; position:absolute; border-radius:9px; box-shadow:0 12px 25px -10px #675BAE55; transition:transform .7s cubic-bezier(.2,1.3,.3,1); border:1px solid #ffffff99; }
+    .slide-back { background:#F2D1DE; transform:translate(44px,-8px) rotate(10deg); }
+    .slide-middle { background:#AFA4EE; transform:translate(-36px,-5px) rotate(-10deg); }
+    .slide-front { background:linear-gradient(125deg,#C3D6FF,#CBBDFB 55%,#F3C4DC); transform:rotate(-3deg); padding:17px; box-sizing:border-box; }
+    .slide-label { font-size:7px; letter-spacing:.12em; color:#5B5194; }
+    .slide-heading { display:block; font-size:27px; line-height:1.05; margin-top:10px; letter-spacing:-.05em; }
+    .slide-page { position:absolute; bottom:12px; right:14px; font-size:7px; }
+    .feature:hover .slide-back { transform:translate(64px,-14px) rotate(16deg); }
+    .feature:hover .slide-middle { transform:translate(-60px,-12px) rotate(-17deg); }
+    .feature:hover .slide-front { transform:translateY(-4px) rotate(0deg); }
+    .mock-poster { background:#EEE7EE; }
+    .poster { width:133px; height:165px; transform:rotate(6deg) translateY(12px); background:radial-gradient(circle at 85% 70%,#FFBA88,transparent 48%),linear-gradient(140deg,#5240A4,#B64B9A 65%,#F09096); border-radius:3px; color:#fff; padding:17px; box-sizing:border-box; box-shadow:0 10px 30px #63377733; transition:transform .6s cubic-bezier(.2,1.3,.3,1); }
+    .poster-small { font-size:6px; letter-spacing:.14em; }
+    .poster-title { display:block; margin-top:16px; font-size:27px; line-height:.92; }
+    .poster-line { display:block; width:70%; height:1px; margin-top:14px; background:#ffffff66; }
+    .feature:hover .poster { transform:rotate(0deg) translateY(2px); }
+    .mock-doc { background:#E7EBF5; }
+    .doc { width:128px; height:164px; background:#fff; box-shadow:0 8px 20px #4c46a022; transform:translateY(15px) rotate(-6deg); transition:transform .6s; }
+    .doc-cover { padding:15px 13px; height:53px; background:linear-gradient(120deg,#8EA2FF,#C4A5FF); font-size:14px; font-weight:750; line-height:1.2; }
+    .doc-line { display:block; height:3px; border-radius:2px; margin:9px 14px; background:#E7E8EF; }
+    .doc-line-short { width:45%; }
+    .feature:hover .doc { transform:translateY(7px) rotate(0); }
+    .mock-browser { background:#E7E6F4; }
+    .browser { width:88%; border-radius:8px; background:#fff; box-shadow:0 10px 25px #4c46a026; transform:translateY(9px); overflow:hidden; transition:transform .6s; }
+    .browser-bar { display:flex; gap:3px; padding:8px; background:#FCFBFF; }
+    .browser-dot { width:3px; height:3px; border-radius:50%; background:#C7C3D4; }
+    .browser-body { padding:14px 12px; text-align:center; background:radial-gradient(circle at 25% 10%,#B3C1FF,transparent 65%),linear-gradient(120deg,#F1E9FF,#FFE8EC); }
+    .browser-nav { height:9px; border-radius:9px; background:#ffffff88; margin-bottom:11px; }
+    .browser-title { font-size:17px; font-weight:750; letter-spacing:-.05em; }
+    .browser-button { display:block; width:38px; height:10px; background:#242139; border-radius:9px; margin:8px auto 0; }
+    .browser-cards { display:flex; gap:5px; margin:8px; }
+    .browser-card { height:22px; flex:1; border-radius:3px; background:#F0EEF6; }
+    .feature:hover .browser { transform:translateY(1px); }
+    .mock-budget { background:#E4EEE9; }
+    .budget { background:#ffffffcc; border:1px solid #fff; border-radius:13px; width:80%; padding:16px; box-sizing:border-box; transform:rotate(3deg); transition:transform .6s; }
+    .budget-label { font-size:8px; color:#7F9B91; }
+    .budget-total { display:block; font-size:23px; font-weight:750; letter-spacing:-.06em; margin-top:4px; }
+    .chart { display:flex; height:60px; gap:9px; align-items:flex-end; margin-top:14px; border-bottom:1px solid #DBE8E0; }
+    .chart-bar { flex:1; height:var(--h); border-radius:4px 4px 0 0; background:linear-gradient(#8CC9B7,#C6E3D8); transform:scaleY(.08); transform-origin:bottom; transition:transform 1.1s cubic-bezier(.2,1.3,.3,1); transition-delay:calc(var(--i) * 80ms); }
+    .chart.is-grown .chart-bar { transform:scaleY(1); }
+    .feature:hover .budget { transform:rotate(0deg); }
+
+    /* 팀 작업 흐름 */
+    .how-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
+    .orbit-card { overflow:hidden; border-radius:30px; background:radial-gradient(circle at 50% 50%,#DAD2FF,transparent 68%),#EFEDF7; padding:26px 0; }
+    .orbit-caption { display:block; text-align:center; color:#9488AB; font:9px ui-monospace,monospace; letter-spacing:.13em; margin:0 0 15px; }
+    .orbit { --r: 150px; position: relative; width: calc(var(--r) * 2); aspect-ratio: 1; margin: 48px auto; }
+    .orbit-ring { position: absolute; inset: 0; border-radius: 50%; border: 1px dashed rgba(20,20,43,.16); animation: orbit-spin 40s linear infinite; }
+    .orbit .agent { position: absolute; left: 50%; top: 50%; transform: rotate(var(--a)) translateX(var(--r)) rotate(calc(-1 * var(--a))); }
+    .orbit .agent b { position: absolute; translate: -50% -50%; white-space: nowrap; padding: 8px 12px; border-radius: 999px; font: 600 12px ui-monospace, SFMono-Regular, Menlo, monospace; color: #5B4BC4; background: rgba(255,255,255,.8); border: 1px solid #fff; animation: orbit-spin 40s linear infinite reverse; }
+    .orbit .leader { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: 112px; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; font-weight: 800; }
+    @keyframes orbit-spin { to { rotate: 360deg; } }
+    .leader { background:linear-gradient(135deg,#ffffffcc,#ffffff55); backdrop-filter:blur(24px); border:1px solid #fff; box-shadow:0 15px 35px #8971cb33,inset 0 2px 4px #fff; color:#66559B; }
+    .steps { display:grid; gap:26px; }
+    .step { display:flex; gap:17px; }
+    .step-index { width:28px; height:28px; flex:none; display:grid; place-items:center; border:1px solid #DCD8ED; border-radius:50%; font-size:11px; color:#998CB4; }
+    .step-title { margin:3px 0 7px; font-size:17px; letter-spacing:-.025em; }
+    .step-copy { margin:0; color:#6B6B80; font-size:13px; line-height:1.7; }
+
+    /* 디자인 테마와 프롬프트 */
+    .design-band { background:linear-gradient(115deg,#5B3DF5,#B449D6 45%,#FF4FA3 72%,#FF9F45); padding:78px 0; color:#fff; overflow:hidden; scroll-margin-top:96px; }
+    .band-inner { width:min(1080px,calc(100% - 48px)); margin:auto; }
+    .light-eyebrow { color:#ffffffbd; }
+    .band-subtitle { color:#ffffffb8; font-size:14px; margin:18px 0 35px; line-height:1.7; }
+    .themes { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:12px; }
+    .theme { background:#ffffff14; border:1px solid #ffffff40; border-radius:19px; padding:19px 17px; backdrop-filter:blur(24px); box-shadow:inset 0 1px 1px #ffffff30; }
+    .swatches { display:flex; margin-bottom:24px; }
+    .swatch { width:31px; height:31px; border-radius:50%; background:var(--color); border:1px solid #ffffff55; }
+    .swatch-second { margin-left:-7px; }
+    .theme-name { display:block; font-size:15px; font-weight:650; }
+    .theme-use { display:block; margin-top:7px; font-size:10px; color:#ffffffb8; line-height:1.6; }
+    .prompts-section { margin:100px 0; text-align:center; overflow:hidden; }
+    .marquee { display:flex; width:max-content; animation:marquee 46s linear infinite; margin:13px 0; }
+    .marquee-reverse { animation-direction:reverse; animation-duration:52s; }
+    .marquee-group { display:flex; gap:12px; padding-right:12px; min-width:100vw; justify-content:space-around; box-sizing:border-box; }
+    .prompt-chip { padding:16px 25px; font-size:14px; box-shadow:inset 0 1px 1px #fff; }
+    .marquee:hover,.marquee:focus-within { animation-play-state:paused; }
+    @keyframes marquee { to { transform:translateX(-50%); } }
+    .cta { margin:12px; border-radius:36px; padding:86px 24px; text-align:center; overflow:hidden; }
+    .cta-title { font-size:clamp(40px,6vw,88px); font-weight:800; letter-spacing:-.04em; line-height:1.1; margin:12px 0 28px; text-wrap:balance; }
+    .footer { width:min(1080px,calc(100% - 48px)); margin:auto; padding:32px 0; display:flex; justify-content:space-between; align-items:center; gap:15px; font-size:10px; color:#9995AB; }
+    .footer-brand { color:#6B667F; font-weight:650; }
+    .floating { position:fixed; right:22px; bottom:22px; z-index:40; font-size:12px; padding:14px 20px; }
+    .floating[hidden] { display:none; }
+    .reveal-pending { opacity:0; filter:blur(7px); transform:translateY(25px); }
+    .reveal-ready { transition:opacity .8s,filter .8s,transform .8s cubic-bezier(.2,1.3,.3,1); transition-delay:var(--delay,0ms); }
+
+    /* 대화창 크기: 이 블록에서만 지정 */
+    .chat-card { display: flex; flex-direction: column; }
+    .chat-card > * { flex: none; }
+    .chat-card > #webchat { height: 200px; min-height: 0; }
+    body.is-started .chat-card { height: calc(100svh - 112px); }
+    body.is-started .chat-card > #webchat { flex: 1 1 0; height: auto; min-height: 0; }
+
+    /* 작업 중 오로라 */
+    @property --aurora { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+    .composer::before { content: ""; position: absolute; inset: -1px; padding: 1.5px; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .6s; background: conic-gradient(from var(--aurora), #a5b4fc, #f0abfc, #fda4af, #fcd34d, #86efac, #67e8f9, #a5b4fc); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: aurora 6s linear infinite; }
+    body.is-working .composer::before { opacity: .8; }
+    @keyframes aurora { to { --aurora: 360deg; } }
+
+    /* Web Chat 기본 요소 정리 + 첨부 파일 카드 */
+    #webchat .webchat__typing-indicator { display: none !important; }
+    #webchat .webchat__stacked-layout:not(.webchat__stacked-layout--from-user) .webchat__stacked-layout__status { display: none; }
+    #webchat .webchat__stacked-layout__attachment-row { margin-top: 8px !important; }
+    #webchat .webchat__stacked-layout__attachment, #webchat .webchat__stacked-layout__attachment .webchat__bubble__content { background: none !important; border: 0 !important; overflow: visible !important; }
+    #webchat .webchat__stacked-layout__content:has(.webchat__fileContent) { overflow: visible !important; }
+    #webchat .webchat__fileContent { padding: 0 !important; }
+    #webchat .webchat__fileContent__buttonLink { display: flex !important; align-items: center; gap: 12px; height: 56px; padding: 0 18px 0 12px; border-radius: 18px; text-decoration: none; color: #14142B; background: rgba(255,255,255,.72); -webkit-backdrop-filter: blur(24px) saturate(160%); backdrop-filter: blur(24px) saturate(160%); border: 1px solid rgba(255,255,255,.8); box-shadow: 0 10px 24px -16px rgba(76,70,160,.3), inset 0 1px 1px #fff; }
+    #webchat .webchat__fileContent__buttonLink::before { content: "FILE"; flex: none; padding: 5px 8px; border-radius: 999px; background: linear-gradient(120deg, #EEF0FF, #FBEFFF); color: #5B4BC4; font: 600 10.5px/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .04em; }
+    #webchat a[download$=".pptx" i]::before { content: "PPTX"; }
+    #webchat a[download$=".docx" i]::before { content: "DOCX"; }
+    #webchat a[download$=".xlsx" i]::before { content: "XLSX"; }
+    #webchat a[download$=".html" i]::before { content: "HTML"; }
+    #webchat .webchat__fileContent__badge { flex: 1; min-width: 0; background: none !important; padding: 0 !important; }
+    #webchat .webchat__fileContent__fileName { font: 13px ui-monospace, SFMono-Regular, Menlo, monospace !important; color: #14142B !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    #webchat .webchat__fileContent__downloadIcon { flex: none; box-sizing: content-box; width: 16px; height: 16px; padding: 0; fill: #6B6B80; color: #6B6B80; }
+    #webchat .webchat__render-markdown { word-break: keep-all; overflow-wrap: anywhere; line-height:1.7; font-size:13px; }
+    #webchat .webchat__render-markdown table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; border-spacing: 0; margin: 12px 0; font-variant-numeric: tabular-nums; }
+    #webchat .webchat__render-markdown th, #webchat .webchat__render-markdown td { padding: 9px 18px 9px 0; border-bottom: 1px solid rgba(20,20,43,.08); white-space: nowrap; }
+    #webchat .webchat__render-markdown th { font-size: 12px; font-weight: 600; color: #6B6B80; }
+    #webchat .webchat__avatar,#webchat .webchat__stacked-layout__speaker-name { display:none; }
+    #webchat .webchat__basic-transcript { outline:none; }
+
+    /* 태블릿 */
+    @media (max-width:900px) {
+      .feature { padding:20px; }
+      .feature-title { font-size:18px; }
+      .how-grid { gap:30px; }
+      .theme { padding:16px 12px; }
+      .orbit { --r:115px; }
+    }
+
+    /* 모바일 */
+    @media (max-width:600px) {
+      .nav { top:12px; padding:8px 8px 8px 12px; min-height:56px; gap:8px; }
+      .brand { font-size:10px; gap:6px; letter-spacing:-.025em; }
+      .brand-dot { width:20px; height:20px; }
+      .nav-links { display:none; }
+      .nav-cta { font-size:10px; padding:11px 13px; }
+      .hero { margin:8px 12px 12px; padding:86px 12px 20px; border-radius:28px; }
+      .hero-badge { font-size:8px; padding:6px 10px; }
+      .hero-kicker { font-size:21px; margin-top:11px; }
+      .hero-title { font-size:40px; letter-spacing:-.06em; }
+      .hero-subtitle { font-size:12px; margin:13px auto 18px; max-width:300px; }
+      .chat-card { border-radius:20px; }
+      .window-bar { padding:11px 12px; gap:7px; }
+      .window-title { font-size:10px; }
+      .window-dots { gap:3px; }
+      .window-dot { width:4px; height:4px; }
+      .reset { font-size:9px; padding:6px 8px; }
+      .chat-foot { padding:0 10px 9px; }
+      .example-chip { font-size:9px; padding:7px 9px; }
+      .example-chips { padding-bottom:9px; }
+      .composer { padding-left:15px; }
+      .prompt-input { font-size:16px; }
+      .disclaimer { font-size:8px; }
+      .logo-strip { padding-top:16px; font-size:9px; gap:11px 18px; }
+      .section { width:calc(100% - 40px); margin-top:76px; margin-bottom:76px; }
+      .section-head { margin-bottom:28px; }
+      .eyebrow { font-size:23px; }
+      .section-title { line-height:1.18; }
+      .stats { margin-top:18px; margin-bottom:65px; padding:25px 0; gap:7px; }
+      .stat-number { font-size:32px; }
+      .stat-label { font-size:9px; }
+      .bento { grid-template-columns:minmax(0,1fr); gap:13px; }
+      .feature,.feature-wide { grid-column:auto; padding:22px; }
+      .feature-title { font-size:22px; }
+      .feature-description { min-height:0; }
+      .mock { height:200px; }
+      .how-grid { grid-template-columns:minmax(0,1fr); gap:35px; }
+      .orbit-card { padding:25px 0; }
+      .orbit { --r:100px; }
+      .orbit .agent b { font-size:10px; padding:6px 9px; }
+      .orbit .leader { width:84px; }
+      .steps { gap:24px; }
+      .design-band { padding:58px 0; }
+      .band-inner { width:calc(100% - 40px); }
+      .themes { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+      .theme { padding:18px; }
+      .theme-use { font-size:11px; }
+      .swatches { margin-bottom:16px; }
+      .prompts-section { margin:76px 0; }
+      .prompt-chip { padding:14px 20px; font-size:12px; }
+      .cta { padding:65px 18px; border-radius:28px; }
+      .footer { width:calc(100% - 40px); flex-wrap:wrap; font-size:9px; gap:10px; }
+      .footer-note { order:3; width:100%; }
+      .floating { right:14px; bottom:14px; font-size:11px; }
+      .work-status { font-size:10px; gap:7px; }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      .blob,.orbit-ring,.orbit .agent b,.marquee,.work-dot,.composer::before { animation:none !important; }
+      .reveal-ready,.pill,.composer,.slide,.poster,.doc,.browser,.budget,.chart-bar { transition:none !important; }
+      .reveal-pending { opacity:1; filter:none; transform:none; }
+      .blob { translate:none; }
+    }
+  </style>
 </head>
-<body>
-  <p id="status" role="status" aria-live="polite">채팅에 연결하는 중입니다...</p>
-  <div id="webchat" style="height: 600px"></div>
+<body class="site">
+  <nav class="nav glass" aria-label="주 메뉴">
+    <a class="brand" href="#" data-chat>
+      <span class="brand-dot" aria-hidden="true"></span>
+      AI Creative Agent Team
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="#features">기능</a>
+      <a class="nav-link" href="#how">작동 방식</a>
+      <a class="nav-link" href="#design">디자인</a>
+    </div>
+    <button class="pill primary nav-cta" data-chat>지금 써 보기 ↗</button>
+  </nav>
+
+  <main class="main">
+    <header class="hero mesh">
+      <div class="blob blob-one" aria-hidden="true"></div>
+      <div class="blob blob-two" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <div class="hero-badge glass">
+          <span class="badge-dot">●</span>
+          Copilot Studio 멀티 에이전트
+        </div>
+        <p class="hero-kicker serif">One idea, five deliverables.</p>
+        <h1 class="hero-title">
+          한 줄의 아이디어,<br>
+          <span class="brand-text">다섯 개의 결과물.</span>
+        </h1>
+        <p class="hero-subtitle">
+          팀장 에이전트가 전문가 다섯에게 일을 나눠,<br>
+          발표자료부터 예산 분석까지 한 번에 만들어 드려요.
+        </p>
+
+        <section class="chat-card glass" aria-label="AI Creative Agent Team 대화">
+          <div class="window-bar">
+            <div class="window-dots" aria-hidden="true">
+              <span class="window-dot"></span>
+              <span class="window-dot"></span>
+              <span class="window-dot"></span>
+            </div>
+            <span class="window-title">AI Creative Agent Team</span>
+            <span class="connection-dot" id="connection-dot" aria-label="연결 중"></span>
+            <button class="pill glass reset" id="reset">새 대화 ↗</button>
+          </div>
+
+          <div id="webchat" role="region" aria-label="대화 내용"></div>
+
+          <div class="chat-foot">
+            <div class="example-chips" aria-label="바로 보내는 예시 요청">
+              <button class="pill glass example-chip" disabled>가을 학교 축제 기획해 줘</button>
+              <button class="pill glass example-chip" disabled>탄소중립 캠페인 홍보물 만들어 줘</button>
+              <button class="pill glass example-chip" disabled>교사 AI 연수 프로그램 제안해 줘</button>
+            </div>
+
+            <div class="work-status" role="status">
+              <span class="work-dots" aria-hidden="true">
+                <span class="work-dot" style="--i:0"></span>
+                <span class="work-dot" style="--i:1"></span>
+                <span class="work-dot" style="--i:2"></span>
+                <span class="work-dot" style="--i:3"></span>
+                <span class="work-dot" style="--i:4"></span>
+              </span>
+              <span id="work-copy">팀이 작업 중 · 0:00</span>
+            </div>
+
+            <div class="suggestions" id="suggestions" aria-label="제안 요청"></div>
+
+            <form class="composer glass" id="composer">
+              <textarea
+                class="prompt-input"
+                id="prompt"
+                rows="1"
+                placeholder="무엇을 만들어 볼까요?"
+                aria-label="팀에게 보낼 메시지"
+                disabled
+              ></textarea>
+              <button
+                class="pill primary send"
+                id="send"
+                type="submit"
+                aria-label="메시지 보내기"
+                disabled
+              >↑</button>
+            </form>
+
+            <div class="error-panel">
+              <p class="error-title">지금은 팀과 연결할 수 없어요</p>
+              <code class="error-detail" id="error-detail"></code>
+              <button class="pill glass retry" id="retry">다시 시도 ↗</button>
+            </div>
+
+            <div class="connection-status" id="status" role="status" aria-live="polite">
+              팀을 부르는 중…
+            </div>
+            <p class="disclaimer">AI는 실수할 수 있어요. 중요한 내용은 확인하세요.</p>
+          </div>
+        </section>
+      </div>
+    </header>
+
+    <div class="logo-strip" aria-label="사용 도구">
+      <span>Microsoft Copilot Studio</span>
+      <span>Claude Opus 5.5</span>
+      <span>PowerPoint</span>
+      <span>Word</span>
+      <span>Excel</span>
+      <span>HTML</span>
+    </div>
+
+    <section class="section stats" aria-label="팀 한눈에 보기" data-reveal>
+      <div class="stat">
+        <span class="stat-number" data-count="1">1</span>
+        <span class="stat-label">번의 요청</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number" data-count="6">6</span>
+        <span class="stat-label">명의 에이전트</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number" data-count="7">7</span>
+        <span class="stat-label">개의 작업 매뉴얼</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number" data-count="5">5</span>
+        <span class="stat-label">개의 파일</span>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow serif">Five deliverables.</p>
+        <h2 class="section-title">한 번의 요청으로 받는 다섯 가지</h2>
+      </div>
+
+      <div class="bento">
+        <article class="feature feature-wide glass" data-reveal>
+          <div class="mock mock-slides" aria-hidden="true">
+            <div class="slide slide-back"></div>
+            <div class="slide slide-middle"></div>
+            <div class="slide slide-front">
+              <span class="slide-label">A NEW PERSPECTIVE</span>
+              <strong class="slide-heading">Ideas into<br>possibilities.</strong>
+              <span class="slide-page">01 — 10</span>
+            </div>
+          </div>
+          <h3 class="feature-title">말할 거리가 정리된 10장</h3>
+          <p class="feature-description">10장 내외 슬라이드와 발표자 노트까지</p>
+          <code class="filename">presentation.pptx</code>
+        </article>
+
+        <article class="feature feature-wide glass" data-reveal>
+          <div class="mock mock-poster" aria-hidden="true">
+            <div class="poster">
+              <span class="poster-small">MAKE SOMETHING MATTER.</span>
+              <strong class="poster-title serif">A little<br>idea.<br>A big<br>change.</strong>
+              <span class="poster-line"></span>
+            </div>
+          </div>
+          <h3 class="feature-title">걸어 두고 싶은 한 장</h3>
+          <p class="feature-description">브라우저에서 바로 여는 유리 질감 포스터, 인쇄·PDF 저장도</p>
+          <code class="filename">poster.html</code>
+        </article>
+
+        <article class="feature glass" data-reveal>
+          <div class="mock mock-doc" aria-hidden="true">
+            <div class="doc">
+              <div class="doc-cover">The next<br>big idea.</div>
+              <span class="doc-line"></span>
+              <span class="doc-line"></span>
+              <span class="doc-line doc-line-short"></span>
+              <span class="doc-line"></span>
+              <span class="doc-line"></span>
+            </div>
+          </div>
+          <h3 class="feature-title">바로 보낼 수 있는 제안서</h3>
+          <p class="feature-description">테마 색 표지와 읽기 좋은 흰 본문</p>
+          <code class="filename">proposal.docx</code>
+        </article>
+
+        <article class="feature glass" data-reveal>
+          <div class="mock mock-browser" aria-hidden="true">
+            <div class="browser">
+              <div class="browser-bar">
+                <span class="browser-dot"></span>
+                <span class="browser-dot"></span>
+                <span class="browser-dot"></span>
+              </div>
+              <div class="browser-body">
+                <div class="browser-nav"></div>
+                <strong class="browser-title">Meet your next idea.</strong>
+                <span class="browser-button"></span>
+              </div>
+              <div class="browser-cards">
+                <span class="browser-card"></span>
+                <span class="browser-card"></span>
+                <span class="browser-card"></span>
+              </div>
+            </div>
+          </div>
+          <h3 class="feature-title">신청까지 받는 랜딩</h3>
+          <p class="feature-description">유리 메뉴 바와 카드로 만든 소개·신청 페이지</p>
+          <code class="filename">webpage.html</code>
+        </article>
+
+        <article class="feature glass" data-reveal>
+          <div class="mock mock-budget" aria-hidden="true">
+            <div class="budget">
+              <span class="budget-label">TOTAL BUDGET</span>
+              <strong class="budget-total">₩12,400,000</strong>
+              <div class="chart" data-chart>
+                <span class="chart-bar" style="--h:45%;--i:0"></span>
+                <span class="chart-bar" style="--h:70%;--i:1"></span>
+                <span class="chart-bar" style="--h:55%;--i:2"></span>
+                <span class="chart-bar" style="--h:95%;--i:3"></span>
+                <span class="chart-bar" style="--h:78%;--i:4"></span>
+              </div>
+            </div>
+          </div>
+          <h3 class="feature-title">숫자가 맞는 예산</h3>
+          <p class="feature-description">숫자 카드와 차트, 합계는 수식으로</p>
+          <code class="filename">budget_analysis.xlsx</code>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow serif">How the team works.</p>
+        <h2 class="section-title">팀장 하나, 전문가 다섯,<br>매뉴얼 일곱.</h2>
+      </div>
+
+      <div class="how-grid">
+        <div class="orbit-card" data-reveal>
+          <div class="orbit">
+            <div class="orbit-ring">
+              <span class="agent" style="--a:0deg"><b>ppt-agent</b></span>
+              <span class="agent" style="--a:72deg"><b>poster-agent</b></span>
+              <span class="agent" style="--a:144deg"><b>proposal-agent</b></span>
+              <span class="agent" style="--a:216deg"><b>webpage-agent</b></span>
+              <span class="agent" style="--a:288deg"><b>budget-agent</b></span>
+            </div>
+            <div class="leader">팀장</div>
+          </div>
+          <span class="orbit-caption">ONE BRIEF. A PERFECTLY CONNECTED TEAM.</span>
+        </div>
+
+        <div class="steps">
+          <div class="step" data-reveal>
+            <span class="step-index">01</span>
+            <div>
+              <h3 class="step-title">브리프</h3>
+              <p class="step-copy">요청을 한 장짜리 기획서로 정리하고 컬러 테마를 정해요.</p>
+            </div>
+          </div>
+          <div class="step" data-reveal>
+            <span class="step-index">02</span>
+            <div>
+              <h3 class="step-title">예산 먼저</h3>
+              <p class="step-copy">budget-agent가 예산 기준표로 모든 금액의 기준을 잡아요.</p>
+            </div>
+          </div>
+          <div class="step" data-reveal>
+            <span class="step-index">03</span>
+            <div>
+              <h3 class="step-title">원고</h3>
+              <p class="step-copy">전문가들이 같은 브리프로 각자 원고를 써요.</p>
+            </div>
+          </div>
+          <div class="step" data-reveal>
+            <span class="step-index">04</span>
+            <div>
+              <h3 class="step-title">파일 5개</h3>
+              <p class="step-copy">디자인 규칙에 맞춰 파일을 만들어 한 번에 첨부해요.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="design-band" id="design">
+      <div class="band-inner">
+        <div data-reveal>
+          <p class="eyebrow serif light-eyebrow">One design language.</p>
+          <h2 class="section-title">다섯 파일, 하나의 리퀴드 글래스.</h2>
+          <p class="band-subtitle">재질과 레이아웃은 늘 같고, 색만 주제에 맞게 바뀝니다.</p>
+        </div>
+
+        <div class="themes">
+          <div class="theme" data-reveal>
+            <div class="swatches">
+              <span class="swatch" style="--color:#A8D8FF"></span>
+              <span class="swatch swatch-second" style="--color:#007AFF"></span>
+            </div>
+            <strong class="theme-name">스카이</strong>
+            <span class="theme-use">교육·일반 행사</span>
+          </div>
+          <div class="theme" data-reveal>
+            <div class="swatches">
+              <span class="swatch" style="--color:#1EC8FF"></span>
+              <span class="swatch swatch-second" style="--color:#FF2E93"></span>
+            </div>
+            <strong class="theme-name">팝</strong>
+            <span class="theme-use">IT 캠페인·축제</span>
+          </div>
+          <div class="theme" data-reveal>
+            <div class="swatches">
+              <span class="swatch" style="--color:#0B1628"></span>
+              <span class="swatch swatch-second" style="--color:#6EA8FF"></span>
+            </div>
+            <strong class="theme-name">네이비</strong>
+            <span class="theme-use">공공 보고서·정책</span>
+          </div>
+          <div class="theme" data-reveal>
+            <div class="swatches">
+              <span class="swatch" style="--color:#A8E3C4"></span>
+              <span class="swatch swatch-second" style="--color:#12A150"></span>
+            </div>
+            <strong class="theme-name">그린</strong>
+            <span class="theme-use">환경·ESG</span>
+          </div>
+          <div class="theme" data-reveal>
+            <div class="swatches">
+              <span class="swatch" style="--color:#FFC2B3"></span>
+              <span class="swatch swatch-second" style="--color:#FF6B4A"></span>
+            </div>
+            <strong class="theme-name">코럴</strong>
+            <span class="theme-use">가족·복지</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="prompts-section">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow serif">Ready prompts.</p>
+        <h2 class="section-title">이런 요청에 강해요</h2>
+      </div>
+
+      <div class="marquee">
+        <div class="marquee-group">
+          <button class="pill glass prompt-chip" data-prompt="가을 학교 축제">가을 학교 축제 ↗</button>
+          <button class="pill glass prompt-chip" data-prompt="탄소중립 캠페인">탄소중립 캠페인 ↗</button>
+          <button class="pill glass prompt-chip" data-prompt="교사 AI 연수">교사 AI 연수 ↗</button>
+          <button class="pill glass prompt-chip" data-prompt="신제품 런칭 행사">신제품 런칭 행사 ↗</button>
+          <button class="pill glass prompt-chip" data-prompt="진로 체험 주간">진로 체험 주간 ↗</button>
+        </div>
+      </div>
+
+      <div class="marquee marquee-reverse">
+        <div class="marquee-group">
+          <button class="pill glass prompt-chip" data-prompt="지역 축제 홍보">지역 축제 홍보 ↗</button>
+          <button class="pill glass prompt-chip" data-prompt="고객 제안 워크숍">고객 제안 워크숍 ↗</button>
+          <button class="pill glass prompt-chip" data-prompt="학부모 설명회">학부모 설명회 ↗</button>
+          <button class="pill glass prompt-chip" data-prompt="해커톤">해커톤 ↗</button>
+          <button class="pill glass prompt-chip" data-prompt="동아리 박람회">동아리 박람회 ↗</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta mesh">
+      <div data-reveal>
+        <p class="eyebrow serif">Your turn.</p>
+        <h2 class="cta-title">지금, 아이디어 한 줄을<br>적어 보세요.</h2>
+        <button class="pill primary" data-chat>대화 시작하기 ↑</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span class="footer-brand">AI Creative Agent Team</span>
+    <span class="footer-note">Copilot Studio로 만든 멀티 에이전트</span>
+    <span>© 2026</span>
+  </footer>
+
+  <button class="pill glass floating" id="floating" hidden aria-label="대화창으로 이동"></button>
+
   <script src="https://cdn.botframework.com/botframework-webchat/4.18.0/webchat.js"></script>
   <script>
+    // ① 등장 효과·숫자·버튼 연결
+    const body = document.body;
+    const card = document.querySelector('.chat-card');
+    const input = document.getElementById('prompt');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let focusRequested = false;
+
+    function goToChat(shouldFocus = true) {
+      window.scrollTo({
+        top: card.getBoundingClientRect().top + window.scrollY - 88,
+        behavior: "smooth"
+      });
+
+      if (shouldFocus) {
+        focusRequested = true;
+        if (!input.disabled) {
+          input.focus({ preventScroll: true });
+          focusRequested = false;
+        }
+      }
+    }
+
+    document.querySelectorAll('[data-chat]').forEach(button => {
+      button.addEventListener('click', event => {
+        event.preventDefault();
+        goToChat();
+      });
+    });
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        const section = document.querySelector(link.getAttribute('href'));
+        window.scrollTo({
+          top: section.getBoundingClientRect().top + window.scrollY - 96,
+          behavior: reduceMotion.matches ? 'instant' : 'smooth'
+        });
+      });
+    });
+
+    document.querySelectorAll('.marquee').forEach(track => {
+      const clone = track.firstElementChild.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      clone.querySelectorAll('button').forEach(button => button.tabIndex = -1);
+      track.appendChild(clone);
+    });
+
+    document.querySelectorAll('[data-prompt]').forEach(button => {
+      button.addEventListener('click', () => {
+        input.value = button.dataset.prompt + ' 기획해 줘';
+        resizeInput();
+        goToChat();
+      });
+    });
+
+    function animateCount(element) {
+      const target = Number(element.dataset.count);
+      if (reduceMotion.matches) return;
+
+      const startedAt = performance.now();
+
+      function tick(now) {
+        const progress = Math.min(1, (now - startedAt) / 950);
+        element.textContent = Math.round(target * (1 - Math.pow(1 - progress, 3)));
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+
+      requestAnimationFrame(tick);
+    }
+
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.remove('reveal-pending');
+          revealObserver.unobserve(entry.target);
+        });
+      }, { threshold: .08 });
+
+      document.querySelectorAll('[data-reveal]').forEach((element, index) => {
+        element.style.setProperty('--delay', (index % 5) * 80 + 'ms');
+        element.classList.add('reveal-ready', 'reveal-pending');
+        revealObserver.observe(element);
+      });
+
+      const countObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateCount(entry.target);
+            countObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: .6 });
+
+      document.querySelectorAll('[data-count]').forEach(element => {
+        countObserver.observe(element);
+      });
+
+      const chartObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-grown');
+            chartObserver.unobserve(entry.target);
+          }
+        });
+      });
+
+      document.querySelectorAll('[data-chart]').forEach(element => {
+        chartObserver.observe(element);
+      });
+    } else {
+      document.querySelectorAll('[data-chart]').forEach(element => {
+        element.classList.add('is-grown');
+      });
+    }
+
+    let scrollFrame = false;
+
+    window.addEventListener('scroll', () => {
+      if (reduceMotion.matches || scrollFrame) return;
+      scrollFrame = true;
+
+      requestAnimationFrame(() => {
+        document.querySelector('.hero').style.setProperty(
+          '--parallax',
+          Math.min(window.scrollY * .08, 70) + 'px'
+        );
+        scrollFrame = false;
+      });
+    }, { passive: true });
+
+    // ② 대화창 동작 — 메시지는 Web Chat만 그립니다.
+    const sendButton = document.getElementById('send');
+    const workCopy = document.getElementById('work-copy');
+    const floating = document.getElementById('floating');
+    const suggestions = document.getElementById('suggestions');
+
+    let store, activeDirectLine, connectionSubscription;
+    let connected = false;
+    let chatVisible = true;
+    let resultWaiting = false;
+    let workStartedAt = 0;
+    let attempt = 0;
+
+    function resizeInput() {
+      input.style.height = 'auto';
+      input.style.height = Math.min(input.scrollHeight - 20, 120) + 'px';
+      input.style.overflowY = input.scrollHeight > 140 ? 'auto' : 'hidden';
+      sendButton.disabled = !connected || !input.value.trim();
+    }
+
+    function elapsed() {
+      const seconds = Math.floor((Date.now() - workStartedAt) / 1000);
+      return Math.floor(seconds / 60) + ':' + String(seconds % 60).padStart(2, '0');
+    }
+
+    function updateWorking() {
+      const working = body.classList.contains('is-working');
+
+      if (working) {
+        const longWait = Date.now() - workStartedAt >= 20000;
+        workCopy.textContent = '팀이 작업 중 · ' + elapsed()
+          + (longWait ? ' · 파일 5개를 만드느라 몇 분 걸릴 수 있어요' : '');
+      }
+
+      floating.hidden = chatVisible || (!working && !resultWaiting);
+      floating.textContent = working
+        ? '팀이 작업 중 · ' + elapsed()
+        : '결과가 도착했어요 ↑';
+    }
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(entries => {
+        chatVisible = entries[0].isIntersecting;
+        if (chatVisible) resultWaiting = false;
+        updateWorking();
+      }, { threshold: .08 }).observe(card);
+    }
+
+    floating.addEventListener('click', () => {
+      resultWaiting = false;
+      goToChat();
+      updateWorking();
+    });
+
+    setInterval(updateWorking, 1000);
+
+    function sendMessage(text) {
+      text = text.trim();
+      if (!text || !connected || !store) return;
+
+      body.classList.add('is-started', 'is-working');
+      workStartedAt = Date.now();
+      resultWaiting = false;
+
+      suggestions.replaceChildren();
+      input.value = '';
+      resizeInput();
+      updateWorking();
+      goToChat();
+
+      store.dispatch({
+        type: "WEB_CHAT/SEND_MESSAGE",
+        payload: { text }
+      });
+    }
+
+    document.getElementById('composer').addEventListener('submit', event => {
+      event.preventDefault();
+      sendMessage(input.value);
+    });
+
+    input.addEventListener('input', resizeInput);
+
+    input.addEventListener('keydown', event => {
+      if (event.isComposing || event.keyCode === 229) return;
+
+      if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+        sendMessage(input.value);
+      }
+    });
+
+    document.querySelectorAll('.example-chip').forEach(button => {
+      button.addEventListener('click', () => sendMessage(button.textContent));
+    });
+
+    document.getElementById('reset').addEventListener('click', () => {
+      window.location.reload();
+    });
+
+    document.getElementById('retry').addEventListener('click', connect);
+
+    function setConnected(value) {
+      connected = value;
+      body.classList.toggle('is-connected', value);
+      input.disabled = !value;
+
+      document.getElementById('connection-dot').setAttribute(
+        'aria-label',
+        value ? '연결됨' : '연결 중'
+      );
+
+      document.querySelectorAll('.example-chip').forEach(button => {
+        button.disabled = !value;
+      });
+
+      resizeInput();
+
+      if (value && focusRequested) {
+        input.focus({ preventScroll: true });
+        focusRequested = false;
+      }
+    }
+
+    function showSuggestions(actions) {
+      suggestions.replaceChildren();
+
+      (actions || []).forEach(action => {
+        const button = document.createElement('button');
+        button.className = 'pill glass suggestion';
+        button.textContent = action.title || String(action.value || '계속하기');
+
+        button.addEventListener('click', () => {
+          if (action.type === 'openUrl') {
+            try {
+              const url = new URL(action.value);
+              if (url.protocol === 'https:' || url.protocol === 'http:') {
+                window.open(url.href, '_blank', 'noopener,noreferrer');
+              }
+            } catch {
+              /* 잘못된 링크는 열지 않습니다. */
+            }
+          } else {
+            sendMessage(
+              typeof action.value === 'string'
+                ? action.value
+                : action.title || ''
+            );
+          }
+        });
+
+        suggestions.appendChild(button);
+      });
+    }
+
+    function incomingActivity(activity) {
+      if (!activity || activity.from?.role === 'user') return;
+      if (activity.type !== 'message') return;
+
+      if (body.classList.contains('is-working')) {
+        body.classList.remove('is-working');
+        resultWaiting = !chatVisible;
+      }
+
+      showSuggestions(activity.suggestedActions?.actions);
+      updateWorking();
+    }
+
+    const styleOptions = {
+      hideSendBox: true,
+      rootHeight: "100%",
+      backgroundColor: "transparent",
+      primaryFont: "'Pretendard Variable', -apple-system, sans-serif",
+      bubbleBackground: "transparent",
+      bubbleBorderWidth: 0,
+      bubbleMaxWidth: 720,
+      bubbleMinWidth: 0,
+      bubbleFromUserBackground: "linear-gradient(135deg, #EEF0FF, #FBEFFF)",
+      bubbleFromUserBorderWidth: 0,
+      bubbleFromUserBorderRadius: 20,
+      avatarSize: 0,
+      botAvatarInitials: '',
+      userAvatarInitials: '',
+      bubbleTextColor: '#14142B',
+      bubbleFromUserTextColor: '#494263',
+      bubbleFromUserBorderColor: 'transparent',
+      bubbleBorderRadius: 0,
+      fontSizeSmall: '10px',
+      paddingRegular: 12
+    };
+
+    // ③ 원래 연결 흐름과 봉인 값 유지
     const BROKER_URL = "https://dl-broker-juwon-4jt3z.azurewebsites.net/api/directlineToken";
-    const SEALED = "Xgq34WqOr9Fgx-_5gZ1Jexm1ljEjHOU6KQ4qBb9PtIvjx6ct1kW069iE4K3sv2A_kx9wbyJNL5rjQVTI2hAS9NsXNPQ-7yGGR1w2HJuOaA9pcuN4LDMMzngul8rlWxfz7Uw5ycSY5RETsdrBuaRiHvebMrU8p7Cx_a-vfHwnRkCUAW7YjbWRkRoyZhF22m-l7812C-B_ImOfOcv37G2wjC9oNPwVjpV8m-r1_z8bZE63_E_x14-g-O4BU-fM2iC5k89dwT9exPaxTW2OtokrrzrBdlysPtpeMJDrXb01F8njXpnOiVHsCfIFCrGa9YF9bZACMj9mA1oXUzA5c6nxfp-4mZNLVBFmqDvFWEq9EKsPENvV_hLgNxYOTvexYMp3QLEtiHevGlx5WiJv-PZ9AmxY178d1JGrtWRPGmfOjpQE6XHfmmeXiPc9HUQHwcdaKe5jyXBFIHs4sqv5wOTvQAPAPOOFzuv2uoH6Jxqd1iJgBpbAcTnhMQB1YrjssgNbYW6Jjk90SX7Tedtjck3WCJXaknE5uiq8ahtVHgbU_GBKJGsCb-2ToZ8WPlgN-x786HONsGTyKw1Blc4quo89t_hhsA_IPgW64bmn4i8Zw-bXf8rN0F5a3uRP5Dw_Qfq8n-p0hx6-NgpFo1cC";
-    const status = document.getElementById("status");
+    const SEALED = "pJIdl_vApHPuX1hE2Eyo7M2kIEVnFrxG_zrQP8bmcxsugo_HswOf7Tgono2kadnAO-W3Myq9vTnQP9fxPLt5mBl5UC6_tRjvkJ8ngHpXze0h9zc3DuENwthtUtM_GQofA2rD8MwARtM0ZUelMDMKpifmO7bSx27StMM60F09rX7HgZQ9LFxAzQaprNItnKRk1icA1ntOj84G2bh3Lljnm4DdTMgmIsGG6A7y7iKBnUgv0anuWR0PQBOOYoiLjqWGxbDd92Eh226rnAv_MEq54dpfocROcfENgAL2pINOTK77a1vaNCeBa0cyepYnwwILByc4SvJFAxT0FST9rB1rRoDM4WlfloDKuR1SUjW5ECBKelf_clBszOBkDSIil5bANurSrps7XVBEOSqs4HTDZ0QNykkfgxl_VWW4lDMY_06Drc6VwbjLrLhRuypvui05dSIZF6YGIqmqjMyIHR0MRyBph-gtPRrmq-vaJMjMgy8HFWQVBbmaT30OloJIF2fBhrvDde2xyGGqjLT_o4tdIGLA-MQ6YrduwZNZr5Y4uelGA9R2R8QSaN5pLR-HtKVrsIZRvYGJvBH9lAFjFaDxZI6V_i8ryK3pCw0rmKvq4AqyNilrXvhxRrU-BiKzBjroXkSsNUqsh9hCJ99c";
+    const status = document.getElementById('status');
 
     function showError(message) {
-      status.hidden = false;
-      status.textContent = message;
+      setConnected(false);
+      body.classList.add('is-error');
+      body.classList.remove('is-working');
+
+      document.getElementById('error-detail').textContent = message;
+      document.getElementById('connection-dot').setAttribute('aria-label', '연결 실패');
+      status.textContent = '지금은 팀과 연결할 수 없어요';
+      updateWorking();
     }
 
     async function connect() {
-      if (!window.WebChat ||
-          typeof WebChat.createDirectLine !== "function" ||
-          typeof WebChat.renderWebChat !== "function") {
-        showError("채팅 구성 요소를 불러오지 못했습니다. 네트워크를 확인한 뒤 새로고침해 주세요.");
+      const currentAttempt = ++attempt;
+
+      connectionSubscription?.unsubscribe();
+      activeDirectLine?.end();
+
+      body.classList.remove('is-error');
+      setConnected(false);
+      status.textContent = '팀을 부르는 중…';
+
+      if (
+        !window.WebChat ||
+        typeof WebChat.createDirectLine !== 'function' ||
+        typeof WebChat.renderWebChat !== 'function'
+      ) {
+        showError('채팅 구성 요소를 불러오지 못했습니다. 네트워크를 확인한 뒤 새로고침해 주세요.');
         return;
       }
 
       let response;
+
       try {
-        // Keep this a simple CORS request; the broker may not support preflight.
+        // 사전 요청 없이 기존 CORS 흐름 유지
         response = await fetch(BROKER_URL, {
           method: "POST",
           body: JSON.stringify({ sealed: SEALED })
         });
-      } catch {
-        showError("서버에 연결하지 못했습니다. 네트워크와 배포 주소를 확인해 주세요.");
+      } catch (error) {
+        if (currentAttempt !== attempt) return;
+        showError(
+          error.message ||
+          '서버에 연결하지 못했습니다. 네트워크와 배포 주소를 확인해 주세요.'
+        );
         return;
       }
+
+      if (currentAttempt !== attempt) return;
+
       if (!response.ok) {
-        showError("서버가 연결 요청을 처리하지 못했습니다 (HTTP " + response.status + ").");
+        showError('서버가 연결 요청을 처리하지 못했습니다 (HTTP ' + response.status + ').');
         return;
       }
 
       let data;
+
       try {
         data = await response.json();
-      } catch {
-        showError("서버 응답을 읽을 수 없습니다. 잠시 후 다시 시도해 주세요.");
+      } catch (error) {
+        showError(
+          error.message ||
+          '서버 응답을 읽을 수 없습니다. 잠시 후 다시 시도해 주세요.'
+        );
         return;
       }
-      if (!data || typeof data.token !== "string" || !data.token.trim()) {
-        showError("서버에서 연결 토큰을 받지 못했습니다. 암호와 배포 주소를 확인해 주세요.");
+
+      if (currentAttempt !== attempt) return;
+
+      if (!data || typeof data.token !== 'string' || !data.token.trim()) {
+        showError('서버에서 연결 토큰을 받지 못했습니다. 암호와 배포 주소를 확인해 주세요.');
         return;
       }
 
       try {
         const directLine = WebChat.createDirectLine({ token: data.token });
-        status.hidden = true;
-        directLine.postActivity({
-          type: "event", name: "startConversation", from: { id: "user" }
-        }).subscribe({
-          error: () => showError("첫 인사를 요청하지 못했습니다. 채팅창에 메시지를 입력해 주세요.")
+        activeDirectLine = directLine;
+
+        store = WebChat.createStore({}, () => next => action => {
+          const result = next(action);
+
+          if (currentAttempt !== attempt) return result;
+
+          if (action.type === 'DIRECT_LINE/CONNECT_FULFILLED') {
+            setConnected(true);
+          }
+
+          if (action.type === 'DIRECT_LINE/INCOMING_ACTIVITY') {
+            incomingActivity(action.payload.activity);
+          }
+
+          if (action.type === 'DIRECT_LINE/CONNECT_REJECTED') {
+            showError(
+              String(action.payload?.error?.message || 'Direct Line 연결을 완료하지 못했습니다.')
+            );
+          }
+
+          return result;
         });
-        WebChat.renderWebChat({ directLine, locale: "ko-KR" }, document.getElementById("webchat"));
-      } catch {
-        showError("채팅을 시작하지 못했습니다. 새로고침 후 다시 시도해 주세요.");
+
+        directLine.postActivity({
+          type: "event",
+          name: "startConversation",
+          from: { id: "user" }
+        }).subscribe({
+          error: error => {
+            if (currentAttempt !== attempt) return;
+            status.textContent = '첫 인사를 요청하지 못했습니다. 채팅창에 메시지를 입력해 주세요.';
+            console.info('startConversation:', error);
+          }
+        });
+
+        WebChat.renderWebChat({
+          directLine,
+          store,
+          styleOptions,
+          userID: 'user',
+          locale: "ko-KR"
+        }, document.getElementById('webchat'));
+
+        connectionSubscription = directLine.connectionStatus$.subscribe(state => {
+          if (currentAttempt !== attempt) return;
+
+          if (state === 3 || state === 4) {
+            showError(
+              state === 3
+                ? 'Direct Line token expired.'
+                : 'Direct Line connection failed.'
+            );
+          }
+        });
+      } catch (error) {
+        showError(
+          error.message ||
+          '채팅을 시작하지 못했습니다. 새로고침 후 다시 시도해 주세요.'
+        );
       }
     }
 
